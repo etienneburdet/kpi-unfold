@@ -1,0 +1,15 @@
+<ods-dataset-context
+    context="ctx"
+    ctx-dataset="us-hospitals"
+    ctx-domain="discovery">
+
+  <h2>
+    {{ ctx.dataset.metas.records_count | number }} hospitals
+    <i class="fa fa-hospital-o" aria-hidden="true"></i>
+  </h2>
+
+  <ods-text-search context="ctx" placeholder="NY, Psychiatric, Health"></ods-text-search>
+  <ods-table context="ctx" sort="nom"></ods-table>
+  <ods-map context="ctx" location="12,34.07143,-118.39588" basemap="land"></ods-map>
+
+</ods-dataset-context>
