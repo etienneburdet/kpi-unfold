@@ -1,10 +1,10 @@
 .scene {
-  perspective: 600px;
+  perspective: 1200px;
 }
 
 .card-flip {
-  height: 140px;
-  width: 140px;
+  height: 240px;
+  width: 240px;
   margin: 55px;
   position: relative;
   transition: transform 0.2s;
@@ -15,13 +15,22 @@
   position: absolute;
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   height: 100%;
   width: 100%;
   backface-visibility: hidden;
   background-color: white;
-  border-radius: 13px;
+  border-radius: 5px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card-face li {
+  margin: 8px 0;
+}
+
+.card-face ul {
+  padding: 0 21px 0 34px;
 }
 
 .card-face-back {
@@ -36,6 +45,31 @@
   transform: rotateY(20deg)
 }
 
+.kpi:after {
+  content: "D'où vient ce chiffre ?";
+}
+
 .card-flip.is-flipped:hover {
   transform: rotateY(180deg)
+}
+
+.kpi {
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.kpi-legend {
+  font-size: 16px;
+}
+
+.card-face-front:after {
+  content: "D'où vient ce chiffre ? 👉";
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  z-index: 10;
+  color: darkgrey;
+  opacity: 80%;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }

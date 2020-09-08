@@ -8,13 +8,30 @@
     ng-class="{'is-flipped': isFlipped}"
     ng-init="isFlipped = false"
     ng-click="isFlipped = !isFlipped">
-    <div class="card-face">
-      Front
+    <div class="card-face card-face-front">
+      <h1 class="kpi">-50%</h1>
+      <p class="kpi-legend">t.éq.CO2</p>
     </div>
     <div class="card-face card-face-back">
-      Back
+      <strong>-50% t.éq.CO2</strong> est calculé à partir de :
+      <ul>
+        <li>
+          <strong>Empreinte CO2e (kgCO2e/voyageur)</strong>
+          de
+          <a href="https://data.opendatasoft.com/explore/dataset/emission-co2-tgv%40datasncf/information/">
+            Émissions de CO2e sur les liaisons TGV
+          </a>
+        </li>
+        <li>
+          SOMME de <strong>Total Voyageurs 2018</strong>
+          de
+          <a href="https://data.opendatasoft.com/explore/dataset/frequentation-gares%40datasncf/information/?disjunctive.nom_gare&disjunctive.code_postal&sort=nom_gare">Fréquentation en gares </a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
+
+<div class="test"></div>
 
 </ods-dataset-context>
