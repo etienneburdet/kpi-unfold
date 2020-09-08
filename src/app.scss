@@ -1,1 +1,41 @@
+.scene {
+  perspective: 600px;
+}
 
+.card-flip {
+  height: 140px;
+  width: 140px;
+  margin: 55px;
+  position: relative;
+  transition: transform 0.2s;
+  transform-style: preserve-3d;
+}
+
+.card-face {
+  position: absolute;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  background-color: white;
+  border-radius: 13px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card-face-back {
+  transform: rotateY(180deg);
+}
+
+.card-flip.is-flipped {
+  transform: rotateY(180deg)
+}
+
+.card-flip:hover {
+  transform: rotateY(20deg)
+}
+
+.card-flip.is-flipped:hover {
+  transform: rotateY(180deg)
+}
