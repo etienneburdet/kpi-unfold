@@ -1,37 +1,41 @@
-<ods-dataset-context
-    context="ctx"
-    ctx-dataset="us-hospitals"
-    ctx-domain="discovery">
-
-<div class="scene">
+<!-- Only change this 👇 -->
+<div class="scene"
+  ods-dataset-context
+  context="ctx"
+  ctx-dataset="emission-co2-tgv@datasncf"
+  ctx-domain="data"
+  ng-init="params = {
+    title: 'Moyenne d\'un voyage Paris/Province en TGV',
+    field: 'tgv_empreinte_co2e_kgco2e_voyageur',
+    func: {
+      techname: 'AVG',
+      fullname: 'La moyenne de'
+    },
+    decimals: 4,
+    unit: 'kg.éq.CO2 par passager'
+  }">
+<!-- Only change this 👆 -->
   <div class="card-flip"
     ng-class="{'is-flipped': isFlipped}"
     ng-init="isFlipped = false"
-    ng-click="isFlipped = !isFlipped">
+    ng-click="isFlipped = !isFlipped"
+    ods-aggregation="kpi"
+    ods-aggregation-context="ctx"
+    ods-aggregation-expression="{{params.field}}"
+    ods-aggregation-function="{{params.func.techname}}">
     <div class="card-face card-face-front">
-      <h1 class="kpi">-50%</h1>
-      <p class="kpi-legend">t.éq.CO2</p>
+      <p class="kpi-legend">{{params.title}}</p>
+      <h1 class="kpi">{{kpi | number:params.decimals}}</h1>
+      <p class="kpi-legend">{{params.unit}}</p>
     </div>
-    <div class="card-face card-face-back">
-      <strong>-50% t.éq.CO2</strong> est calculé à partir de :
-      <ul>
-        <li>
-          <strong>Empreinte CO2e (kgCO2e/voyageur)</strong>
-          de
-          <a href="https://data.opendatasoft.com/explore/dataset/emission-co2-tgv%40datasncf/information/">
-            Émissions de CO2e sur les liaisons TGV
+      <div class="card-face card-face-back">
+        <strong>{{kpi | number:params.decimals}} {{params.unit}}</strong> est calculé à partir de
+          <strong>{{params.func.fullname}}</strong> de
+          <strong ng-repeat="datasetField in ctx.dataset.fields | filter:field">{{datasetField.description}}</strong>
+          du jeux de données
+          <a href="{{ctx.domainUrl}}/explore/dataset/{{ctx.dataset.datasetid}}/information/">
+            {{ctx.dataset.metas.title}}
           </a>
-        </li>
-        <li>
-          SOMME de <strong>Total Voyageurs 2018</strong>
-          de
-          <a href="https://data.opendatasoft.com/explore/dataset/frequentation-gares%40datasncf/information/?disjunctive.nom_gare&disjunctive.code_postal&sort=nom_gare">Fréquentation en gares </a>
-        </li>
-      </ul>
-    </div>
+      </div>
   </div>
 </div>
-
-<div class="test"></div>
-
-</ods-dataset-context>
