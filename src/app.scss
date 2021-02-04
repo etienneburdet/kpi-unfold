@@ -1,12 +1,14 @@
 .scene {
   perspective: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
 }
 
 .card-flip {
-  height: 280px;
-  width: 280px;
-  margin: 55px;
   position: relative;
+  height: 100%;
+  width: 100%;
   transition: transform 0.2s;
   transform-style: preserve-3d;
   border-radius: 8px;
@@ -14,9 +16,9 @@
 
 .card-face {
   position: absolute;
-  align-items: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
@@ -24,7 +26,7 @@
   background-color: white;
   box-sizing: border-box;
   border-radius: inherit;
-  padding: 21px 0;
+  padding: 21px;
 }
 
 .card-face li {
@@ -37,7 +39,8 @@
 
 .card-face-back {
   transform: rotateY(180deg);
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2),0 4px 5px 0 rgba(0,0,0,0.14),0 1px 10px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 .card-flip.is-flipped {
@@ -46,11 +49,12 @@
 
 .card-flip:hover {
   transform: rotateY(5deg);
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2),0 4px 5px 0 rgba(0,0,0,0.14),0 1px 10px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 .card-flip.is-flipped:hover {
-  transform: rotateY(180deg)
+  transform: rotateY(180deg);
 }
 
 .kpi {
@@ -65,11 +69,13 @@
   padding: 0 21px;
 }
 
-.card-face-front:after {
-  content: "D'où vient ce chiffre ? 👉";
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
+.separator {
+  display: block;
+  height: 1px;
+  width: 30px;
+  color: black;
+}
+
+.hint {
   color: darkgrey;
-  opacity: 80%;
 }

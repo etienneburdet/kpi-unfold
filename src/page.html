@@ -1,41 +1,76 @@
-<!-- Only change this 👇 -->
-<div class="scene"
+<div
+  class="scene"
   ods-dataset-context
   context="ctx"
   ctx-dataset="emission-co2-tgv@datasncf"
   ctx-domain="data"
-  ng-init="params = {
-    title: 'Moyenne d\'un voyage Paris/Province en TGV',
-    field: 'tgv_empreinte_co2e_kgco2e_voyageur',
-    func: {
-      techname: 'AVG',
-      fullname: 'La moyenne de'
-    },
-    decimals: 4,
-    unit: 'kg.éq.CO2 par passager'
-  }">
-<!-- Only change this 👆 -->
-  <div class="card-flip"
+  style="width: 280px; height: 280px; margin: 55px;"
+>
+  <div
+    class="card-flip"
     ng-class="{'is-flipped': isFlipped}"
     ng-init="isFlipped = false"
     ng-click="isFlipped = !isFlipped"
     ods-aggregation="kpi"
     ods-aggregation-context="ctx"
-    ods-aggregation-expression="{{params.field}}"
-    ods-aggregation-function="{{params.func.techname}}">
+    ods-aggregation-expression="tgv_empreinte_co2e_kgco2e_voyageur"
+    ods-aggregation-function="AVG"
+  >
     <div class="card-face card-face-front">
-      <p class="kpi-legend">{{params.title}}</p>
-      <h1 class="kpi">{{kpi | number:params.decimals}}</h1>
-      <p class="kpi-legend">{{params.unit}}</p>
+      <p class="kpi-legend">Moyenne d'un voyage Paris/Province en TGV</p>
+      <h1 class="kpi">{{kpi | number:4}}</h1>
+      <p class="kpi-legend">kg.éq.CO2 par passage</p>
+      <div class="separator"></div>
+      <p class="hint">"D'où vient ce chiffre ? 👉"</p>
     </div>
-      <div class="card-face card-face-back">
-        <strong>{{kpi | number:params.decimals}} {{params.unit}}</strong> est calculé à partir de
-          <strong>{{params.func.fullname}}</strong> de
-          <strong ng-repeat="datasetField in ctx.dataset.fields | filter:field">{{datasetField.description}}</strong>
-          du jeux de données
-          <a href="{{ctx.domainUrl}}/explore/dataset/{{ctx.dataset.datasetid}}/information/">
-            {{ctx.dataset.metas.title}}
-          </a>
-      </div>
+    <div class="card-face card-face-back">
+      <strong>{{kpi | number:params.decimals}} {{params.unit}}</strong> est la
+      moyenne de la colonne <strong>Empreinte CO2e (kgCO2e/voyageur)</strong> du
+      jeu de données
+      <a
+        href="{{ctx.domainUrl}}/explore/dataset/{{ctx.dataset.datasetid}}/information/"
+      >
+        {{ctx.dataset.metas.title}}
+      </a>
+    </div>
+  </div>
+</div>
+
+<div
+  class="scene"
+  ods-dataset-context
+  context="ctx"
+  ctx-dataset="emission-co2-tgv@datasncf"
+  ctx-domain="data"
+  style="width: 280px; height: 280px; margin: 55px;"
+>
+  <div
+    class="card-flip"
+    ng-class="{'is-flipped': isFlipped}"
+    ng-init="isFlipped = false"
+    ng-click="isFlipped = !isFlipped"
+    ods-aggregation="kpi"
+    ods-aggregation-context="ctx"
+    ods-aggregation-expression="distance"
+    ods-aggregation-function="MAX"
+  >
+    <div class="card-face card-face-front">
+      <p class="kpi-legend">
+        Plus longue distance d'un voyage Paris/Province en TGV
+      </p>
+      <h1 class="kpi">{{kpi | number:0}}</h1>
+      <p class="kpi-legend">km</p>
+      <div class="separator"></div>
+      <p class="hint">"D'où vient ce chiffre ? 👉"</p>
+    </div>
+    <div class="card-face card-face-back">
+      <strong>{{kpi | number:params.decimals}} km</strong> est la plus grande
+      distance trouvée dans le jeu de données :
+      <a
+        href="{{ctx.domainUrl}}/explore/dataset/{{ctx.dataset.datasetid}}/information/"
+      >
+        {{ctx.dataset.metas.title}}
+      </a>
+    </div>
   </div>
 </div>
